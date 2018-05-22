@@ -75,7 +75,7 @@ class FontGenerator:
                 continue
             if font not in self.font_list:
                 error = "Do not have this font type, choose another one.\n"
-                error += "All Font see: https://github.com/jmluang/text-to-ascii/blob/master/EXAMPLE.md"
+                error += "All Fonts in: https://github.com/jmluang/text-to-ascii/blob/master/EXAMPLE"
             break
 
         self.introduction_and_generation(font)
