@@ -48,6 +48,7 @@ class FontGenerator:
         """
         Program introduction
         """
+       
         os.system("cls")
         print(colored(pyfiglet.figlet_format("Text to ASCII generator",
                                              font="slant"), "green"))
@@ -64,14 +65,17 @@ class FontGenerator:
                 print error
                 error = False
             else :
-                print(colored("What kind of font do you want? (press q to exit)", "white", "on_green"))
+                print(colored("What kind of font do you want? ( q:exit , p:show all fonts )", "white", "on_green"))
 
             font = raw_input("> ")
             if font == "q":
                 return
+            if font == "p":
+                self.show_all_fonts()
+                continue
             if font not in self.font_list:
                 error = "Do not have this font type, choose another one.\n"
-                error += "All Font see: http://github.com/jmluang/Text-to-ascii-generator/example.md"
+                error += "All Font see: https://github.com/jmluang/text-to-ascii/blob/master/EXAMPLE.md"
             break
 
         self.introduction_and_generation(font)
@@ -94,14 +98,14 @@ class FontGenerator:
 
             # Loop until a user type a correct command
             while True:
-                print(colored("Save? t/i/b (text/image/back)", "white", "on_green"))
+                print(colored("Save? t/i/b/q (text/image/back/exit)", "white", "on_green"))
                 command = raw_input("> ")
 
-                if command == "b" or command == "t" or command == "i":
-                    
+                if command in ["b", "t", "i", "q"]:
                     if command == "b":
                         break
-
+                    if command == "q":
+                        return
                     name = raw_input("File name: ")
                     if command == "t":
                         file = open(name + ".txt", "w")
@@ -118,6 +122,17 @@ class FontGenerator:
                     print(colored("Done!", "green"))
                     os.system("pause")
                     return
+
+    def show_all_fonts(self):
+        os.system("cls")
+        print "-----------------------------------"
+        for i,font in enumerate(self.font_list):
+            print "%s" % font, 
+            if i % 10 == 0:
+                print "\n"
+        print "\n-----------------------------------"
+        return 
+    
 
 def main():
     font_generator = FontGenerator()
